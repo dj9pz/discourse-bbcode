@@ -63,9 +63,19 @@ function wrap(tag, attr, callback) {
 function setupMarkdownIt(md) {
   const ruler = md.inline.bbcode.ruler;
 
+  // ruler.push("size", {
+  //   tag: "size",
+  //   wrap: wrap("font", "size")
+  // });
+  
   ruler.push("size", {
     tag: "size",
-    wrap: wrap("font", "size")
+    
+    wrap: wrap(                                                                                                      
+      "span",
+      "style",                                                                                                       
+      tagInfo => "font-size:" + tagInfo.attrs._default.trim()                                                        
+    )
   });
 
   ruler.push("font", {
@@ -292,7 +302,7 @@ export function setup(helper) {
   replaceBBCode("indent", contents => ["blockquote", ["div"].concat(contents)]);
 
   helper.addPreProcessor(replaceFontColor);
-  helper.addPreProcessor(replaceFontSize);
+  // helper.addPreProcessor(replaceFontSize);
   helper.addPreProcessor(replaceFontFace);
 
   register("aname", (contents, param) =>
