@@ -70,11 +70,11 @@ function setupMarkdownIt(md) {
   
   ruler.push("size", {
     tag: "size",
-    
-    wrap: wrap(                                                                                                      
+
+    wrap: wrap(
       "span",
-      "style",                                                                                                       
-      tagInfo => "font-size:" + tagInfo.attrs._default.trim()                                                        
+      "style",
+      tagInfo => "font-size:" + tagInfo.attrs._default.trim()
     )
   });
 
